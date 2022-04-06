@@ -1,7 +1,12 @@
 # slock - simple screen locker
 
-simple screen locker utility for `X`.
+`simple` screen locker utility for `X`.
 
+
+## Features & Patches
+
+- [capscolor](https://tools.suckless.org/slock/patches/capscolor/): Introduces an additional color to indicate the state of Caps Lock.
+- [message](https://tools.suckless.org/slock/patches/message/): Add a message to your lock screen.
 
 ## Requirements
 
