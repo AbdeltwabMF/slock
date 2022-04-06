@@ -6,23 +6,13 @@ include config.mk
 SRC = slock.c ${COMPATSRC}
 OBJ = ${SRC:.c=.o}
 
-all: options slock
-
-options:
-	@echo slock build options:
-	@echo "CFLAGS   = ${CFLAGS}"
-	@echo "LDFLAGS  = ${LDFLAGS}"
-	@echo "CC       = ${CC}"
+all: slock
 
 .c.o:
 	@echo CC $<
 	@${CC} -c ${CFLAGS} $<
 
 ${OBJ}: config.h config.mk arg.h util.h
-
-config.h:
-	@echo creating $@ from config.def.h
-	@cp config.def.h $@
 
 slock: ${OBJ}
 	@echo CC -o $@
@@ -36,7 +26,7 @@ dist: clean
 	@echo creating dist tarball
 	@mkdir -p slock-${VERSION}
 	@cp -R LICENSE Makefile README slock.1 config.mk \
-		${SRC} explicit_bzero.c config.def.h arg.h util.h slock-${VERSION}
+		${SRC} explicit_bzero.c config.h arg.h util.h slock-${VERSION}
 	@tar -cf slock-${VERSION}.tar slock-${VERSION}
 	@gzip slock-${VERSION}.tar
 	@rm -rf slock-${VERSION}
@@ -58,4 +48,4 @@ uninstall:
 	@echo removing manual page from ${DESTDIR}${MANPREFIX}/man1
 	@rm -f ${DESTDIR}${MANPREFIX}/man1/slock.1
 
-.PHONY: all options clean dist install uninstall
+.PHONY: all clean dist install uninstall
