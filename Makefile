@@ -25,7 +25,7 @@ clean:
 dist: clean
 	@echo creating dist tarball
 	@mkdir -p slock-${VERSION}
-	@cp -R LICENSE Makefile README slock.1 config.mk \
+	@cp -R LICENSE Makefile README.md slock.1 config.mk \
 		${SRC} explicit_bzero.c config.h arg.h util.h slock-${VERSION}
 	@tar -cf slock-${VERSION}.tar slock-${VERSION}
 	@gzip slock-${VERSION}.tar
